@@ -8,20 +8,21 @@ echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━�
 echo -e "\E[0;41;36m               DELETE USER                \E[0m"
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo ""
-read -p "Username SSH to Delete : " Pengguna
+
+read -p "Username SSH to Delete : " Login
 
 if [ "$os_name" == "Ubuntu" ]
 then
-     killall -9 -u $Pengguna > /dev/null 2>&1
-         userdel -f -r $Pengguna > /dev/null 2>&1
+     killall -9 -u $Login > /dev/null 2>&1
+         userdel -f -r $Login > /dev/null 2>&1
 
 elif [ "$os_name" == "Debian" ]
 then
-    pkill -u $Pengguna > /dev/null 2>&1
-        userdel -f -r $Pengguna > /dev/null 2>&1
+    pkill -u $Login > /dev/null 2>&1
+        userdel -f -r $Login > /dev/null 2>&1
 
 elif [ "$os_name" == "CentOS" ]
 then
-        pkill -u $Pengguna > /dev/null 2>&1
-        userdel $Pengguna > /dev/null 2>&1
+        pkill -u $Login > /dev/null 2>&1
+        userdel $Login > /dev/null 2>&1
 fi
