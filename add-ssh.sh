@@ -9,10 +9,6 @@ domain=$(cat /etc/v2ray/domain)
 read -p "Username : " Login
 read -p "Password : " Pass
 
-ssl="$(cat ~/log-install.txt | grep -w "Stunnel4" | cut -d: -f2)"
-sqd="$(cat ~/log-install.txt | grep -w "Squid" | cut -d: -f2)"
-ovpn="$(netstat -nlpt | grep -i openvpn | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
-ovpn2="$(netstat -nlpu | grep -i openvpn | grep -i 0.0.0.0 | awk '{print $4}' | cut -d: -f2)"
 useradd -s /bin/false -M $Login
 exp="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
 echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
@@ -25,10 +21,11 @@ echo -e "==============================="
 echo -e "Domain         : $domain"
 echo -e "Host           : $IP"
 echo -e "OpenSSH        : 22"
-echo -e "Dropbear       : 109, 143"
-echo -e "SSL/TLS        :$ssl"
-echo -e "Port Suid      :$sqd"
-echo -e "Port Websocket : 443, 8880"
+echo -e "Dropbear       : 109, 143, 69"
+echo -e "SSL/TLS        : 222, 444, 777, 443"
+echo -e "Port Suid      : 3128, 8080"
+echo -e "Websocket HTTP: 2082, 8880"
+echo -e "Websocket HTTPS: 443"
 echo -e "badvpn         : 7100-7300"
 echo -e "==============================="
 echo -e "PAYLOAD"                                                          
