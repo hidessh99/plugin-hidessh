@@ -4,20 +4,10 @@ biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
 #########################
 
 MYIP=$(curl -sS ipv4.icanhazip.com)
-red='\e[1;31m'
-green='\e[0;32m'
-NC='\e[0m'
-green() { echo -e "\\033[32;1m${*}\\033[0m"; }
-red() { echo -e "\\033[31;1m${*}\\033[0m"; }
-
-source /var/lib/scrz-prem/ipvps.conf
-if [[ "$IP" = "" ]]; then
-domain=$(cat /etc/xray/domain)
-else
-domain=$IP
-fi
+domain=$(cat /usr/local/etc/xray/domain)
 tls=443
 none=80
+
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${user_EXISTS} == '0' ]]; do
 		read -rp "User: " -e user
 		user_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
@@ -39,10 +29,10 @@ uuid=$(cat /proc/sys/kernel/random/uuid)
 masaaktif=90
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 sed -i '/#vmess$/a\### '"$user $exp"'\
-},{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
+},{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /usr/local/etc/xray/config.json
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 sed -i '/#vmessgrpc$/a\### '"$user $exp"'\
-},{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
+},{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /usr/local/etc/xray/config.json
 asu=`cat<<EOF
       {
       "v": "2",
@@ -119,5 +109,3 @@ echo -e "━━━━━━━━━━━━━━━━━━━━━━━�
 echo -e "Link GRPC : ${vmesslink3}" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo "" | tee -a /etc/log-create-user.log
-rm /etc/xray/$user-tls.json > /dev/null 2>&1
-rm /etc/xray/$user-none.json > /dev/null 2>&1
