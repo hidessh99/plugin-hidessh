@@ -10,7 +10,7 @@ none=80
 
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${user_EXISTS} == '0' ]]; do
 		read -rp "User: " -e user
-		user_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
+		user_EXISTS=$(grep -w $user /usr/local/etc/xray/config.json | wc -l)
 		if [ ${user_EXISTS} -gt '1' ]; then
 		clear
 			echo "A client with the specified name was already created, please choose another name."
