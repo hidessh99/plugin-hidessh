@@ -25,7 +25,6 @@ if [[ "$uuid" == "" ]]; then
  exit 1
 fi
 
-uuid=$(cat /proc/sys/kernel/random/uuid)
 masaaktif=90
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 sed -i '/#vmess$/a\### '"$user $exp"'\
@@ -85,7 +84,7 @@ vmesslink1="vmess://$(echo $asu | base64 -w 0)"
 vmesslink2="vmess://$(echo $ask | base64 -w 0)"
 vmesslink3="vmess://$(echo $grpc | base64 -w 0)"
 systemctl restart xray > /dev/null 2>&1
-service cron restart > /dev/null 2>&1
+
 clear
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "     Xray/V2Ray/Vmess Account      " | tee -a /etc/log-create-user.log

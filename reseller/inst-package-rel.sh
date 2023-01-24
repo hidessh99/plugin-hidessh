@@ -5,8 +5,8 @@ wget -O /usr/local/bin/add-ssh-user "https://raw.githubusercontent.com/hidessh99
 wget -O /usr/local/bin/del-ssh-user "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/del-ssh.sh" && chmod +x /usr/local/bin/del-ssh-user
 
 #vmees
-wget -O /usr/local/bin/add-vmees-user-rel "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/reseller/add-vmess-rel.sh" && chmod +x /usr/local/bin/add-vmees-user-rel
-wget -O /usr/local/bin/del-vmees-user-rel "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/reseller/del-vmess-rel.sh" && chmod +x /usr/local/bin/del-vmees-user-rel 
+wget -O /usr/local/bin/add-vmess-user-rel "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/reseller/add-vmess-rel.sh" && chmod +x /usr/local/bin/add-vmess-user-rel
+wget -O /usr/local/bin/del-vmess-user-rel "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/reseller/del-vmess-rel.sh" && chmod +x /usr/local/bin/del-vmess-user-rel 
 
 #delete vmess
 wget -O /usr/local/bin/del-vmess-user "https://raw.githubusercontent.com/hidessh99/Package-tambahan-Seller/main/hide/del-v2ray-user.sh" && chmod +x /usr/local/bin/del-vmess-user
