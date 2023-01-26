@@ -22,10 +22,10 @@ uuid=$(cat /proc/sys/kernel/random/uuid)
 
 masaaktif=90
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-sed -i '/#vmess$/a\#@ '"$user $exp"'\
+sed -i '/#vmess$/a\### '"$user $exp"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /usr/local/etc/xray/config.json
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-sed -i '/#vmessgrpc$/a\#@ '"$user $exp"'\
+sed -i '/#vmess-grpc$/a\### '"$user $exp"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /usr/local/etc/xray/config.json
 asu=`cat<<EOF
       {
@@ -33,7 +33,7 @@ asu=`cat<<EOF
       "ps": "${user}",
       "add": "${domain}",
       "port": "443",
-      "id": "${user}",
+      "id": "${uuid}",
       "aid": "0",
       "net": "ws",
       "path": "/vmess",
@@ -48,7 +48,7 @@ ask=`cat<<EOF
       "ps": "${user}",
       "add": "${domain}",
       "port": "80",
-      "id": "${user}",
+      "id": "${uuid}",
       "aid": "0",
       "net": "ws",
       "path": "/vmess",
@@ -63,7 +63,7 @@ grpc=`cat<<EOF
       "ps": "${user}",
       "add": "${domain}",
       "port": "443",
-      "id": "${user}",
+      "id": "${uuid}",
       "aid": "0",
       "net": "grpc",
       "path": "vmess-grpc",
@@ -78,8 +78,8 @@ vmess_base643=$( base64 -w 0 <<< $vmess_json3)
 vmesslink1="vmess://$(echo $asu | base64 -w 0)"
 vmesslink2="vmess://$(echo $ask | base64 -w 0)"
 vmesslink3="vmess://$(echo $grpc | base64 -w 0)"
-systemctl restart nginx > /dev/null 2>&1
-systemctl restart xray > /dev/null 2>&1
+sleep 0.5 && systemctl restart nginx > /dev/null 2>&1
+sleep 0.5 && systemctl restart xray > /dev/null 2>&1
 clear
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "     Xray/V2Ray/Vmess Account      " | tee -a /etc/log-create-user.log
@@ -89,7 +89,7 @@ echo -e "Domain : ${domain}" | tee -a /etc/log-create-user.log
 echo -e "Port TLS : ${tls}" | tee -a /etc/log-create-user.log
 echo -e "Port none TLS : ${none}" | tee -a /etc/log-create-user.log
 echo -e "Port  GRPC : ${tls}" | tee -a /etc/log-create-user.log
-echo -e "id : ${user}" | tee -a /etc/log-create-user.log
+echo -e "id : ${uuid}" | tee -a /etc/log-create-user.log
 echo -e "alterId : 0" | tee -a /etc/log-create-user.log
 echo -e "Security : auto" | tee -a /etc/log-create-user.log
 echo -e "Network : ws" | tee -a /etc/log-create-user.log
