@@ -78,8 +78,8 @@ vmess_base643=$( base64 -w 0 <<< $vmess_json3)
 vmesslink1="vmess://$(echo $asu | base64 -w 0)"
 vmesslink2="vmess://$(echo $ask | base64 -w 0)"
 vmesslink3="vmess://$(echo $grpc | base64 -w 0)"
-#systemctl restart nginx > /dev/null 2>&1
-#systemctl restart xray > /dev/null 2>&1
+systemctl restart nginx > /dev/null 2>&1
+systemctl restart xray > /dev/null 2>&1
 clear
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "     Xray/V2Ray/Vmess Account      " | tee -a /etc/log-create-user.log
