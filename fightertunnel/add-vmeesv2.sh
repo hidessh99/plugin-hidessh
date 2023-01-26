@@ -147,42 +147,7 @@ END
 vmesslink1="vmess://$(echo $VMESS_WS | base64 -w 0)"
 vmesslink2="vmess://$(echo $VMESS_NON_TLS | base64 -w 0)"
 vmesslink3="vmess://$(echo $VMESS_GRPC | base64 -w 0)"
-TEXT="
-<code>───────────────────────────</code>
-<code>     Xray/Vmess Account</code>
-<code>───────────────────────────</code>
-<code>Remarks      : </code><code>${user}</code>
-<code>Domain       : </code><code>${domain}</code>
-<code>Host XrayDNS : </code><code>${NS}</code>
-<code>Pub Key      : </code><code>${PUB}</code>
-<code>Location     : </code><code>$CITY</code>
-<code>User Quota   : </code><code>${Quota} GB</code>
-<code>Port TLS     : 443</code>
-<code>Port DNS     : 443, 53</code>
-<code>Port NTLS    : 80, 8080, 2086</code>
-<code>Port GRPC    : 443</code>
-<code>User ID      : </code><code>${uuid}</code>
-<code>AlterId      : 0</code>
-<code>Security     : auto</code>
-<code>Network      : WS or gRPC</code>
-<code>Path TLS     : (/multi path)</code>
-<code>Path NLS     : (/multi path)</code>
-<code>Path Dynamic : http://BUG.COM</code>
-<code>ServiceName  : vmess-grpc</code>
-<code>───────────────────────────</code>
-<code>Link TLS     :</code> 
-<code>${vmesslink1}</code>
-<code>───────────────────────────</code>
-<code>Link NTLS    :</code> 
-<code>${vmesslink2}</code>
-<code>───────────────────────────</code>
-<code>Link GRPC    :</code> 
-<code>${vmesslink3}</code>
-<code>───────────────────────────</code>
-<code>Format OpenClash :</code> https://${domain}:81/vmess-$user.txt
-<code>───────────────────────────</code>
-<code>Expired On : $exp</code>
-"
+
 systemctl restart xray
 if [ ! -e /etc/vmess ]; then
   mkdir -p /etc/vmess
@@ -223,6 +188,7 @@ echo -e "━━━━━━━━━━━━━━━━━━━━━━━�
 echo -e "Link NTLS    : ${vmesslink2}" | tee -a /etc/xray/log-create-${user}.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "Link GRPC    : ${vmesslink3}" | tee -a /etc/xray/log-create-${user}.log
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "Host XrayDNS : ${NS}" | tee -a /etc/xray/log-create-${user}.log
 echo -e "User Quota   : ${Quota} GB" | tee -a /etc/xray/log-create-${user}.log
 echo -e "Pub Key      : ${PUB}" | tee -a /etc/xray/log-create-${user}.log
