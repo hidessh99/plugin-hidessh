@@ -22,10 +22,10 @@ uuid=$(cat /proc/sys/kernel/random/uuid)
 
 masaaktif=90
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-sed -i '/#vmess$/a\### '"$user $exp"'\
+sed -i '/#vmess$/a\#@ '"$user $exp"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /usr/local/etc/xray/config.json
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-sed -i '/#vmessgrpc$/a\### '"$user $exp"'\
+sed -i '/#vmessgrpc$/a\#@ '"$user $exp"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /usr/local/etc/xray/config.json
 asu=`cat<<EOF
       {
