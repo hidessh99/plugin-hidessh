@@ -4,29 +4,44 @@ biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
 #########################
 
 MYIP=$(curl -sS ipv4.icanhazip.com)
-domain=$(cat /usr/local/etc/xray/domain)
+red='\e[1;31m'
+green='\e[0;32m'
+NC='\e[0m'
+green() { echo -e "\\033[32;1m${*}\\033[0m"; }
+red() { echo -e "\\033[31;1m${*}\\033[0m"; }
+
+source /var/lib/scrz-prem/ipvps.conf
+if [[ "$IP" = "" ]]; then
+domain=$(cat /etc/xray/domain)
+else
+domain=$IP
+fi
+
 tls=443
 none=80
+until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 
-until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${user_EXISTS} == '0' ]]; do
-		read -rp "User: " -e user
-		user_EXISTS=$(grep -w $user /usr/local/etc/xray/config.json | wc -l)
-		if [ ${user_EXISTS} -gt '1' ]; then
-		clear
-			echo "A client with the specified name was already created, please choose another name."
-			exit 1
-		fi
-	done
+                read -rp "User: " -e user
+                CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
 
+                if [[ ${CLIENT_EXISTS} -gt "0" ]]; then
+clear
+                        echo ""
+                        echo "A client with the specified name was already created, please choose another name."
+                        echo ""
+
+                        exit 0;
+                fi
+        done
+ 
 uuid=$(cat /proc/sys/kernel/random/uuid)
-
 masaaktif=90
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 sed -i '/#vmess$/a\### '"$user $exp"'\
-},{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /usr/local/etc/xray/config.json
+},{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 sed -i '/#vmessgrpc$/a\### '"$user $exp"'\
-},{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /usr/local/etc/xray/config.json
+},{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
 asu=`cat<<EOF
       {
       "v": "2",
@@ -78,8 +93,8 @@ vmess_base643=$( base64 -w 0 <<< $vmess_json3)
 vmesslink1="vmess://$(echo $asu | base64 -w 0)"
 vmesslink2="vmess://$(echo $ask | base64 -w 0)"
 vmesslink3="vmess://$(echo $grpc | base64 -w 0)"
-#systemctl restart nginx > /dev/null 2>&1
-#systemctl restart xray > /dev/null 2>&1
+systemctl restart xray > /dev/null 2>&1
+service cron restart > /dev/null 2>&1
 clear
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "     Xray/V2Ray/Vmess Account      " | tee -a /etc/log-create-user.log
@@ -89,7 +104,7 @@ echo -e "Domain : ${domain}" | tee -a /etc/log-create-user.log
 echo -e "Port TLS : ${tls}" | tee -a /etc/log-create-user.log
 echo -e "Port none TLS : ${none}" | tee -a /etc/log-create-user.log
 echo -e "Port  GRPC : ${tls}" | tee -a /etc/log-create-user.log
-echo -e "id : ${user}" | tee -a /etc/log-create-user.log
+echo -e "id : ${uuid}" | tee -a /etc/log-create-user.log
 echo -e "alterId : 0" | tee -a /etc/log-create-user.log
 echo -e "Security : auto" | tee -a /etc/log-create-user.log
 echo -e "Network : ws" | tee -a /etc/log-create-user.log
