@@ -7,6 +7,8 @@ MYIP=$(curl -sS ipv4.icanhazip.com)
 domain=$(cat /usr/local/etc/xray/domain)
 tr=443
 none=80
+pathws=/trojan
+pathgrpc=trojan-grpc
 
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${user_EXISTS} == '0' ]]; do
 		read -rp "User: " -e user
@@ -32,22 +34,27 @@ sed -i '/#trojanws$/a\#! '"$user $exp"'\
 sed -i '/#trojangrpc$/a\#! '"$user $exp"'\
 },{"password": "'""$uuid""'","email": "'""$user""'"' /usr/local/etc/xray/config.json
 
-systemctl restart xray
 trojanlink1="trojan://${uuid}@${domain}:${tr}?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=${domain}#${user}"
-trojanlink="trojan://${uuid}@${domain}:${tr}?path=%2Ftrojan-ws&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
+trojanlink="trojan://${uuid}@${domain}:${tr}?path=%2Ftrojan&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
+trojanlink2="trojan://${uuid}@${domain}:${none}?path=%2Ftrojan&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
+
+sleep 0.5 && systemctl restart nginx > /dev/null 2>&1
+sleep 0.5 && systemctl restart xray > /dev/null 2>&1
 clear
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
-echo -e "       UUID TROJAN ACCOUNT         " | tee -a /etc/log-create-user.log
+echo -e "           TROJAN ACCOUNT          " | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "Remarks : ${user}" | tee -a /etc/log-create-user.log
 echo -e "Host/IP : ${domain}" | tee -a /etc/log-create-user.log
 echo -e "port : ${tr}" | tee -a /etc/log-create-user.log
-echo -e "Key : ${uuid}" | tee -a /etc/log-create-user.log
-echo -e "Path : /trojan-ws" | tee -a /etc/log-create-user.log
+echo -e "Key : ${user}" | tee -a /etc/log-create-user.log
+echo -e "Path : /hidessh-trojan-ws" | tee -a /etc/log-create-user.log
 echo -e "ServiceName : trojan-grpc" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "Link WS : ${trojanlink}" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "Link GRPC : ${trojanlink1}" | tee -a /etc/log-create-user.log
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
+echo -e "Link GRPC : ${trojanlink2}" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo "" | tee -a /etc/log-create-user.log

@@ -21,7 +21,7 @@ read -rp "User: " -e user
 uuid=$(cat /proc/sys/kernel/random/uuid)
 masaaktif=90
 Quota=1073741824
-
+exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 sed -i '/#vmess$/a\### '"$user $exp"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
 exp=$(date -d "$masaaktif days" +"%Y-%m-%d")
