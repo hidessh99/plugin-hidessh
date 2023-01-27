@@ -7,7 +7,7 @@ MYIP=$(curl -sS ipv4.icanhazip.com)
 domain=$(cat /usr/local/etc/xray/domain)
 tr=443
 none=80
-pathgrpc=trojan-grpc
+pathgrpc=vless-grpc
 
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${user_EXISTS} == '0' ]]; do
 		read -rp "User: " -e user
@@ -28,27 +28,27 @@ fi
 
 masaaktif=90
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-sed -i '/#trojan$/a\#& '"$user $exp"'\
+sed -i '/#vless$/a\#= '"$user $exp"'\
 },{"password": "'""$uuid""'","email": "'""$user""'"' /usr/local/etc/xray/config.json
-sed -i '/#trojan-grpc$/a\#& '"$user $exp"'\
+sed -i '/#vless-grpc$/a\#= '"$user $exp"'\
 },{"password": "'""$uuid""'","email": "'""$user""'"' /usr/local/etc/xray/config.json
 
-trojanlink1="trojan://${uuid}@${domain}:${tr}?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=${domain}#${user}"
-trojanlink="trojan://${uuid}@${domain}:${tr}?path=%2Ftrojan&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
-trojanlink2="trojan://${uuid}@${domain}:${none}?path=%2Ftrojan&security=none&host=${domain}&type=ws&sni=${domain}#${user}"
+trojanlink1="vless://${uuid}@${domain}:${tr}?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=${domain}#${user}"
+trojanlink="vless://${uuid}@${domain}:${tr}?path=%2Ftrojan&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
+trojanlink2="vless://${uuid}@${domain}:${none}?path=%2Ftrojan&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
 
 sleep 0.5 && systemctl restart nginx > /dev/null 2>&1
 sleep 0.5 && systemctl restart xray > /dev/null 2>&1
 clear
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
-echo -e "           TROJAN ACCOUNT          " | tee -a /etc/log-create-user.log
+echo -e "           Vless ACCOUNT          " | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "Remarks : ${user}" | tee -a /etc/log-create-user.log
 echo -e "Host/IP : ${domain}" | tee -a /etc/log-create-user.log
 echo -e "port : ${tr}" | tee -a /etc/log-create-user.log
 echo -e "Key : ${uuid}" | tee -a /etc/log-create-user.log
-echo -e "Path WS : /trojan" | tee -a /etc/log-create-user.log
-echo -e "Path GPRC : trojan-grpc" | tee -a /etc/log-create-user.log
+echo -e "Path WS : /vless" | tee -a /etc/log-create-user.log
+echo -e "Path GPRC : ${pathgrpc}" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "Link WS : ${trojanlink}" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
