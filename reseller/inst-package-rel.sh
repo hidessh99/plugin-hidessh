@@ -13,5 +13,5 @@ wget -O /usr/local/bin/add-trojan-user "https://raw.githubusercontent.com/hidess
 wget -O /usr/local/bin/del-trojan-user "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/reseller/del-trojan-rel.sh" && chmod +x /usr/local/bin/del-trojan-user
 
 #vless
-wget -O /usr/local/bin/add-vless-user "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/reseller/add-vless-rel.sh" && chmod +x /usr/local/bin/add-vless-user
-wget -O /usr/local/bin/del-vless-user "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/reseller/del-vless-rel.sh" && chmod +x /usr/local/bin/del-vless-user
+wget -O /usr/local/bin/add-vless-user "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/reseller/add-vless-user.sh" && chmod +x /usr/local/bin/add-vless-user
+wget -O /usr/local/bin/del-vless-user "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/reseller/del-vless-user.sh" && chmod +x /usr/local/bin/del-vless-user
