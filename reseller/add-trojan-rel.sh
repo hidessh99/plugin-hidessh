@@ -7,7 +7,6 @@ MYIP=$(curl -sS ipv4.icanhazip.com)
 domain=$(cat /usr/local/etc/xray/domain)
 tr=443
 none=80
-pathws=/trojan
 pathgrpc=trojan-grpc
 
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${user_EXISTS} == '0' ]]; do
@@ -48,7 +47,7 @@ echo -e "Remarks : ${user}" | tee -a /etc/log-create-user.log
 echo -e "Host/IP : ${domain}" | tee -a /etc/log-create-user.log
 echo -e "port : ${tr}" | tee -a /etc/log-create-user.log
 echo -e "Key : ${user}" | tee -a /etc/log-create-user.log
-echo -e "Path WS: ${pathws}" | tee -a /etc/log-create-user.log
+echo -e "Path WS: /trojan" | tee -a /etc/log-create-user.log
 echo -e "Path Gprc : ${pathgrpc}" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "Link WS : ${trojanlink}" | tee -a /etc/log-create-user.log
