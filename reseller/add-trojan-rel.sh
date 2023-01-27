@@ -47,8 +47,8 @@ echo -e "Remarks : ${user}" | tee -a /etc/log-create-user.log
 echo -e "Host/IP : ${domain}" | tee -a /etc/log-create-user.log
 echo -e "port : ${tr}" | tee -a /etc/log-create-user.log
 echo -e "Key : ${uuid}" | tee -a /etc/log-create-user.log
-echo -e "Path : /trojan" | tee -a /etc/log-create-user.log
-echo -e "ServiceName : trojan-grpc" | tee -a /etc/log-create-user.log
+echo -e "Path WS : /trojan" | tee -a /etc/log-create-user.log
+echo -e "Path GPRC : trojan-grpc" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "Link WS : ${trojanlink}" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
