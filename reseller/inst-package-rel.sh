@@ -10,6 +10,5 @@ wget -O /usr/local/bin/del-vmess-user "https://raw.githubusercontent.com/hidessh
 
 
 #add trojan
-wget -O /usr/local/bin/add-trojan-user "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/fightertunnel/add-trojan.sh" && chmod +x /usr/local/bin/add-trojan-user
-#delete trojan
+wget -O /usr/local/bin/add-trojan-user "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/reseller/add-trojan-rel.sh" && chmod +x /usr/local/bin/add-trojan-user
 wget -O /usr/local/bin/del-trojan-user "https://raw.githubusercontent.com/hidessh99/Package-tambahan-Seller/main/hide/del-trojango-user.sh" && chmod +x /usr/local/bin/del-trojan-user

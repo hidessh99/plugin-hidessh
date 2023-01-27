@@ -48,8 +48,8 @@ echo -e "Remarks : ${user}" | tee -a /etc/log-create-user.log
 echo -e "Host/IP : ${domain}" | tee -a /etc/log-create-user.log
 echo -e "port : ${tr}" | tee -a /etc/log-create-user.log
 echo -e "Key : ${user}" | tee -a /etc/log-create-user.log
-echo -e "Path : /hidessh-trojan-ws" | tee -a /etc/log-create-user.log
-echo -e "ServiceName : trojan-grpc" | tee -a /etc/log-create-user.log
+echo -e "Path WS: ${pathws}" | tee -a /etc/log-create-user.log
+echo -e "Path Gprc : ${pathgrpc}" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "Link WS : ${trojanlink}" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
