@@ -94,7 +94,7 @@
       "streamSettings":{
         "network": "ws",
         "wsSettings": {
-          "path": "/hidessh-shadowsocks",
+          "path": "/hidessh-ss",
           "alpn": [
             "h2",
             "http/1.1"
@@ -120,7 +120,7 @@
       "streamSettings":{
         "network": "ws",
         "wsSettings": {
-          "path": "/hidessh-shadowsocks2022",
+          "path": "/hidessh-ss2022",
           "alpn": [
             "h2",
             "http/1.1"
@@ -269,7 +269,7 @@
       "streamSettings":{
         "network": "grpc",
         "grpcSettings": {
-          "serviceName": "hidessh-shadowsocksgrpc",
+          "serviceName": "hidessh-ssgrpc",
           "alpn": [
             "h2",
             "http/1.1"
@@ -295,7 +295,7 @@
       "streamSettings":{
         "network": "grpc",
         "grpcSettings": {
-          "serviceName": "hidessh-shadowsocks2022grpc",
+          "serviceName": "hidessh-ss2022grpc",
           "alpn": [
             "h2",
             "http/1.1"

@@ -702,6 +702,9 @@ echo -e "━━━━━━━━━━━━━━━━━━━━━━━�
 echo ""
 
 #tambahan dari hidessh
+cd
+rm -rf /var/www/html/*
+
 mv /etc/localtime /etc/localtime.bak
 ln -s /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 wget -q -O /var/www/html/index.html "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/index.html"
@@ -745,6 +748,7 @@ echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 /etc/init.d/dropbear restart
 
+#add path public
 
 rm -f xray
 secs_to_human "$(($(date +%s) - ${start}))"
