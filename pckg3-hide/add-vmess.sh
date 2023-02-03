@@ -88,7 +88,7 @@ echo -e "Domain : ${domain}" | tee -a /etc/log-create-user.log
 echo -e "Port TLS : ${tls}" | tee -a /etc/log-create-user.log
 echo -e "Port none TLS : ${none}" | tee -a /etc/log-create-user.log
 echo -e "Port  GRPC : ${tls}" | tee -a /etc/log-create-user.log
-echo -e "id : ${user}" | tee -a /etc/log-create-user.log
+echo -e "id : ${uuid}" | tee -a /etc/log-create-user.log
 echo -e "alterId : 0" | tee -a /etc/log-create-user.log
 echo -e "Security : auto" | tee -a /etc/log-create-user.log
 echo -e "Network : ws" | tee -a /etc/log-create-user.log

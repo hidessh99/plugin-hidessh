@@ -7,8 +7,8 @@ wget -O /usr/local/bin/del-ssh-user "https://raw.githubusercontent.com/hidessh99
 
 
 #add vmess
-wget -O /usr/local/bin/add-vmess-user "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/fightertunnel/add-vmees.sh" && chmod +x /usr/local/bin/add-vmess-user
-wget -O /usr/local/bin/del-vmess-user "https://raw.githubusercontent.com/hidessh99/Package-tambahan-Seller/main/hide/del-v2ray-user.sh" && chmod +x /usr/local/bin/del-vmess-user
+wget -O /usr/local/bin/add-vmess-user "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/pckg3-hide/add-vmess.sh" && chmod +x /usr/local/bin/add-vmess-user
+wget -O /usr/local/bin/del-vmess-user "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/pckg3-hide/del-vmess.sh" && chmod +x /usr/local/bin/del-vmess-user
 
 #add trojan
 wget -O /usr/local/bin/add-trojan-user "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/fightertunnel/add-trojan.sh" && chmod +x /usr/local/bin/add-trojan-user
