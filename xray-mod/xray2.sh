@@ -701,8 +701,51 @@ echo -e "  ${YB}- HTTP  : 80, 8080, 8880, 2052, 2082, 2086, 2095${NC}"
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" |
 echo ""
 
-#package hidessh
-wget -q -O /var/www/html/index.html "https://raw.githubusercontent.com/arismaramar/supreme/aio/ssh/hidessh.sh"
+#tambahan dari hidessh
+mv /etc/localtime /etc/localtime.bak
+ln -s /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
+wget -q -O /var/www/html/index.html "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/index.html"
+
+sed -i 's/#AllowTcpForwarding yes/AllowTcpForwarding yes/g' /etc/ssh/sshd_config
+sed -i 's/Port 22/#Port 22/g' /etc/ssh/sshd_config
+echo "Port 2222" >> /etc/ssh/sshd_config
+echo "Port 22" >> /etc/ssh/sshd_config
+#INSTALL dropbear
+apt install dropbear
+rm /etc/default/dropbear
+rm /etc/issue.net
+cat >  /etc/default/dropbear <<END
+# disabled because OpenSSH is installed
+# change to NO_START=0 to enable Dropbear
+NO_START=0
+# the TCP port that Dropbear listens on
+DROPBEAR_PORT=143
+
+# any additional arguments for Dropbear
+DROPBEAR_EXTRA_ARGS="-p 109 -p 69 "
+
+# specify an optional banner file containing a message to be
+# sent to clients before they connect, such as "/etc/issue.net"
+DROPBEAR_BANNER="/etc/issue.net"
+
+# RSA hostkey file (default: /etc/dropbear/dropbear_rsa_host_key)
+#DROPBEAR_RSAKEY="/etc/dropbear/dropbear_rsa_host_key"
+
+# DSS hostkey file (default: /etc/dropbear/dropbear_dss_host_key)
+#DROPBEAR_DSSKEY="/etc/dropbear/dropbear_dss_host_key"
+
+# ECDSA hostkey file (default: /etc/dropbear/dropbear_ecdsa_host_key)
+#DROPBEAR_ECDSAKEY="/etc/dropbear/dropbear_ecdsa_host_key"
+
+# Receive window size - this is a tradeoff between memory and
+# network performance
+DROPBEAR_RECEIVE_WINDOW=65536
+END
+echo "/bin/false" >> /etc/shells
+echo "/usr/sbin/nologin" >> /etc/shells
+/etc/init.d/dropbear restart
+
+
 rm -f xray
 secs_to_human "$(($(date +%s) - ${start}))"
 echo -e "${YB}[ WARNING ] reboot now ? (Y/N)${NC} "
