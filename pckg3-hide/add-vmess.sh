@@ -4,44 +4,29 @@ biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
 #########################
 
 MYIP=$(curl -sS ipv4.icanhazip.com)
-red='\e[1;31m'
-green='\e[0;32m'
-NC='\e[0m'
-green() { echo -e "\\033[32;1m${*}\\033[0m"; }
-red() { echo -e "\\033[31;1m${*}\\033[0m"; }
-
-source /var/lib/scrz-prem/ipvps.conf
-if [[ "$IP" = "" ]]; then
-domain=$(cat /etc/xray/domain)
-else
-domain=$IP
-fi
-
-tls=443
-none=80
+domain=$(cat /usr/local/etc/xray/domain)
+pathvmess=$(cat /usr/local/hidessh/vmess.txt)
+pathvmessgprc=$(cat /usr/local/hidessh/vmessgprc.txt)
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
-
-                read -rp "User: " -e user
-                CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
-
-                if [[ ${CLIENT_EXISTS} -gt "0" ]]; then
+read -rp "User: " -e user
+CLIENT_EXISTS=$(grep -w $user /usr/local/etc/xray/config.json | wc -l)
+if [[ ${CLIENT_EXISTS} == '1' ]]; then
 clear
-                        echo ""
-                        echo "A client with the specified name was already created, please choose another name."
-                        echo ""
-
-                        exit 0;
-                fi
-        done
-
+echo -e "${BB}————————————————————————————————————————————————————————${NC}"
+echo -e "                   ${WB}Add Vmess Account${NC}                  "
+echo -e "${BB}————————————————————————————————————————————————————————${NC}"
+echo -e "${YB}A client with the specified name was already created, please choose another name.${NC}"
+echo -e "${BB}————————————————————————————————————————————————————————${NC}"
+exit 0;
+fi
+done
 uuid=$(cat /proc/sys/kernel/random/uuid)
-masaaktif=90
+read -p "Expired (days): " masaaktif
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-sed -i '/#vmess$/a\### '"$user $exp"'\
-},{"id": "'""$user""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
-exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-sed -i '/#vmessgrpc$/a\### '"$user $exp"'\
-},{"id": "'""$user""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
+sed -i '/#vmess$/a\#@ '"$user $exp"'\
+},{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /usr/local/etc/xray/config.json
+sed -i '/#vmess-grpc$/a\#@ '"$user $exp"'\
+},{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /usr/local/etc/xray/config.json
 asu=`cat<<EOF
       {
       "v": "2",
@@ -51,7 +36,7 @@ asu=`cat<<EOF
       "id": "${user}",
       "aid": "0",
       "net": "ws",
-      "path": "/vmess",
+      "path": "${pathvmess}",
       "type": "none",
       "host": "${domain}",
       "tls": "tls"
@@ -66,7 +51,7 @@ ask=`cat<<EOF
       "id": "${user}",
       "aid": "0",
       "net": "ws",
-      "path": "/vmess",
+      "path": "${pathvmess}",
       "type": "none",
       "host": "${domain}",
       "tls": "none"
@@ -81,7 +66,7 @@ grpc=`cat<<EOF
       "id": "${user}",
       "aid": "0",
       "net": "grpc",
-      "path": "vmess-grpc",
+      "path": "${pathvmessgprc}",
       "type": "none",
       "host": "${domain}",
       "tls": "tls"
@@ -107,8 +92,8 @@ echo -e "id : ${user}" | tee -a /etc/log-create-user.log
 echo -e "alterId : 0" | tee -a /etc/log-create-user.log
 echo -e "Security : auto" | tee -a /etc/log-create-user.log
 echo -e "Network : ws" | tee -a /etc/log-create-user.log
-echo -e "Path : /vmess" | tee -a /etc/log-create-user.log
-echo -e "ServiceName : vmess-grpc" | tee -a /etc/log-create-user.log
+echo -e "Path : ${pathvmess}" | tee -a /etc/log-create-user.log
+echo -e "ServiceName : ${pathvmessgprc}" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "Link TLS : ${vmesslink1}" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
@@ -117,5 +102,3 @@ echo -e "━━━━━━━━━━━━━━━━━━━━━━━�
 echo -e "Link GRPC : ${vmesslink3}" | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo "" | tee -a /etc/log-create-user.log
-rm /etc/xray/$user-tls.json > /dev/null 2>&1
-rm /etc/xray/$user-none.json > /dev/null 2>&1

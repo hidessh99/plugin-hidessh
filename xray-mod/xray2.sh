@@ -769,6 +769,9 @@ echo "Banner /etc/issue.net" >> /etc/ssh/sshd_config
 wget -O /usr/local/etc/xray/config.json "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/xray-mod/config.json"
 wget -q -O /etc/nginx/conf.d/xray.conf "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/xray-mod/xray.conf"
 
+wget -O /usr/local/bin/add-vmess-user "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/fightertunnel/add-vmees.sh" && chmod +x /usr/local/bin/add-vmess-user
+wget -O /usr/local/bin/del-vmess-user "https://raw.githubusercontent.com/hidessh99/Package-tambahan-Seller/main/hide/del-v2ray-user.sh" && chmod +x /usr/local/bin/del-vmess-user
+
 rm -f xray
 secs_to_human "$(($(date +%s) - ${start}))"
 echo -e "${YB}[ WARNING ] reboot now ? (Y/N)${NC} "
