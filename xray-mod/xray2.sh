@@ -749,7 +749,7 @@ echo "/usr/sbin/nologin" >> /etc/shells
 /etc/init.d/dropbear restart
 
 #add path public
-
+wget https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/path-public.sh; chmod +x path-public.sh; ./path-public.sh
 rm -f xray
 secs_to_human "$(($(date +%s) - ${start}))"
 echo -e "${YB}[ WARNING ] reboot now ? (Y/N)${NC} "
