@@ -47,7 +47,7 @@ echo -e "        TROJAN ACCOUNT         " | tee -a /etc/log-create-user.log
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a /etc/log-create-user.log
 echo -e "Remarks : ${user}" | tee -a /etc/log-create-user.log
 echo -e "Host/IP : ${domain}" | tee -a /etc/log-create-user.log
-echo -e "port : ${tr}" | tee -a /etc/log-create-user.log
+echo -e "port : ${tls}" | tee -a /etc/log-create-user.log
 echo -e "Key : ${uuid}" | tee -a /etc/log-create-user.log
 echo -e "Path : ${pathtrojan}" | tee -a /etc/log-create-user.log
 echo -e "ServiceName : ${pathtrojangprc}" | tee -a /etc/log-create-user.log
