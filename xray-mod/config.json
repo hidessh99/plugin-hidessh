@@ -12,9 +12,13 @@
       "settings": {
         "clients": [
           {
-            "id": "$uuid",
+            "id": "4f5e0f91-cb5d-4b37-bd36-92aca19894b6",
             "alterId": 0
 #vmess
+#@ dedot 2023-02-05
+},{"id": "2e42cc8f-c0fe-4fcb-81e2-6d690f163397","alterId": 0,"email": "dedot"
+#@ dedisuaan 2023-03-04
+},{"id": "7d6c1296-24bb-4c2e-bfab-830d5f7d76d7","alterId": 0,"email": "dedisuaan"
           }
         ]
       },
@@ -37,7 +41,7 @@
         "decryption":"none",
         "clients": [
           {
-            "id": "$uuid"
+            "id": "4f5e0f91-cb5d-4b37-bd36-92aca19894b6"
 #vless
           }
         ]
@@ -61,7 +65,7 @@
         "decryption":"none",
         "clients": [
           {
-            "password": "$uuid"
+            "password": "4f5e0f91-cb5d-4b37-bd36-92aca19894b6"
 #trojan
           }
         ]
@@ -84,8 +88,8 @@
       "settings": {
         "clients": [
             {
-              "method": "$cipher",
-              "password": "$uuid"
+              "method": "aes-128-gcm",
+              "password": "4f5e0f91-cb5d-4b37-bd36-92aca19894b6"
 #shadowsocks
             }
           ],
@@ -107,11 +111,11 @@
       "port": "10005",
       "protocol": "shadowsocks",
       "settings": {
-        "method": "$cipher2",
-        "password": "$serverpsk",
+        "method": "2022-blake3-aes-128-gcm",
+        "password": "phonG4SJz4bY2wPQvblUWw==",
         "clients": [
           {
-            "password": "$userpsk"
+            "password": "JEaxa6h3KYTfICTHB7wGlA=="
 #shadowsocks2022
           }
         ],
@@ -162,9 +166,13 @@
       "settings": {
         "clients": [
           {
-            "id": "$uuid",
+            "id": "4f5e0f91-cb5d-4b37-bd36-92aca19894b6",
             "alterId": 0
 #vmess-grpc
+#@ dedot 2023-02-05
+},{"id": "2e42cc8f-c0fe-4fcb-81e2-6d690f163397","alterId": 0,"email": "dedot"
+#@ dedisuaan 2023-03-04
+},{"id": "7d6c1296-24bb-4c2e-bfab-830d5f7d76d7","alterId": 0,"email": "dedisuaan"
           }
         ]
       },
@@ -186,9 +194,13 @@
       "settings": {
         "clients": [
           {
-            "id": "$uuid",
+            "id": "4f5e0f91-cb5d-4b37-bd36-92aca19894b6",
             "alterId": 0
 #vmess-grpc
+#@ dedot 2023-02-05
+},{"id": "2e42cc8f-c0fe-4fcb-81e2-6d690f163397","alterId": 0,"email": "dedot"
+#@ dedisuaan 2023-03-04
+},{"id": "7d6c1296-24bb-4c2e-bfab-830d5f7d76d7","alterId": 0,"email": "dedisuaan"
           }
         ]
       },
@@ -211,7 +223,7 @@
         "decryption":"none",
         "clients": [
           {
-            "id": "$uuid"
+            "id": "4f5e0f91-cb5d-4b37-bd36-92aca19894b6"
 #vless-grpc
           }
         ]
@@ -235,7 +247,7 @@
         "decryption":"none",
         "clients": [
           {
-            "password": "$uuid"
+            "password": "4f5e0f91-cb5d-4b37-bd36-92aca19894b6"
 #trojan-grpc
           }
         ],
@@ -259,8 +271,8 @@
       "settings": {
         "clients": [
             {
-              "method": "$cipher",
-              "password": "$uuid"
+              "method": "aes-128-gcm",
+              "password": "4f5e0f91-cb5d-4b37-bd36-92aca19894b6"
 #shadowsocks-grpc
             }
           ],
@@ -282,11 +294,11 @@
       "port": "20005",
       "protocol": "shadowsocks",
       "settings": {
-        "method": "$cipher2",
-        "password": "$serverpsk",
+        "method": "2022-blake3-aes-128-gcm",
+        "password": "phonG4SJz4bY2wPQvblUWw==",
         "clients": [
           {
-            "password": "$userpsk"
+            "password": "JEaxa6h3KYTfICTHB7wGlA=="
 #shadowsocks2022-grpc
           }
         ],
@@ -342,3 +354,4 @@
     }
   ]
 }
+
