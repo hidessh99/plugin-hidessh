@@ -7,6 +7,8 @@ MYIP=$(curl -sS ipv4.icanhazip.com)
 domain=$(cat /usr/local/etc/xray/domain)
 pathvmess=$(cat /usr/local/hidessh/vmess.txt)
 pathvmessgprc=$(cat /usr/local/hidessh/vmessgprc.txt)
+tls=443
+none=80
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 read -rp "User: " -e user
 CLIENT_EXISTS=$(grep -w $user /usr/local/etc/xray/config.json | wc -l)
