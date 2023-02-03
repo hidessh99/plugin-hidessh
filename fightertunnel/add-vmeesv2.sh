@@ -17,14 +17,27 @@ Name=$(curl -sS https://sc-xray.yha.my.id/ip | grep $MYIP | awk '{print $2}')
 echo $Name >/usr/local/etc/.$Name.ini
 CekOne=$(cat /usr/local/etc/.$Name.ini)
 
-read -rp "User: " -e user
+until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
+
+                read -rp "User: " -e user
+                CLIENT_EXISTS=$(grep -w $user /etc/xray/config.json | wc -l)
+
+                if [[ ${CLIENT_EXISTS} -gt "0" ]]; then
+clear
+                        echo ""
+                        echo "A client with the specified name was already created, please choose another name."
+                        echo ""
+
+                        exit 0;
+                fi
+        done
+
 uuid=$(cat /proc/sys/kernel/random/uuid)
 masaaktif=90
-Quota=1073741824
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 sed -i '/#vmess$/a\### '"$user $exp"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
-exp=$(date -d "$masaaktif days" +"%Y-%m-%d")
+exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 sed -i '/#vmessgrpc$/a\### '"$user $exp"'\
 },{"id": "'""$uuid""'","alterId": '"0"',"email": "'""$user""'"' /etc/xray/config.json
 VMESS_WS=`cat<<EOF
