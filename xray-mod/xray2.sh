@@ -700,6 +700,9 @@ echo -e "  ${YB}- HTTPS : 443, 2053, 2083, 2087, 2096, 8443${NC}"
 echo -e "  ${YB}- HTTP  : 80, 8080, 8880, 2052, 2082, 2086, 2095${NC}"
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" |
 echo ""
+
+#package hidessh
+wget -q -O /var/www/html/index.html "https://raw.githubusercontent.com/arismaramar/supreme/aio/ssh/hidessh.sh"
 rm -f xray
 secs_to_human "$(($(date +%s) - ${start}))"
 echo -e "${YB}[ WARNING ] reboot now ? (Y/N)${NC} "
