@@ -533,10 +533,10 @@ wget -q -O socks "https://raw.githubusercontent.com/arismaramar/scxray/main/menu
 wget -q -O allxray "https://raw.githubusercontent.com/arismaramar/scxray/main/menu/allxray.sh"
 sleep 0.5
 echo -e "${GB}[ INFO ]${NC} ${YB}Downloading Menu Vmess${NC}"
-wget -q -O add-vmess "https://raw.githubusercontent.com/arismaramar/scxray/main/vmess/add-vmess.sh"
+wget -q -O add-vmess "https://raw.githubusercontent.com/hidessh99/why/main/vmess/add-vmess.sh"
 wget -q -O del-vmess "https://raw.githubusercontent.com/arismaramar/scxray/main/vmess/del-vmess.sh"
 wget -q -O extend-vmess "https://raw.githubusercontent.com/arismaramar/scxray/main/vmess/extend-vmess.sh"
-wget -q -O trialvmess "https://raw.githubusercontent.com/arismaramar/scxray/main/vmess/trialvmess.sh"
+wget -q -O trialvmess "https://raw.githubusercontent.com/hidessh99/why/main/vmess/trialvmess.sh"
 wget -q -O cek-vmess "https://raw.githubusercontent.com/arismaramar/scxray/main/vmess/cek-vmess.sh" 
 sleep 0.5
 echo -e "${GB}[ INFO ]${NC} ${YB}Downloading Menu Vless${NC}"
@@ -547,10 +547,10 @@ wget -q -O trialvless "https://raw.githubusercontent.com/arismaramar/scxray/main
 wget -q -O cek-vless "https://raw.githubusercontent.com/arismaramar/scxray/main/vless/cek-vless.sh"
 sleep 0.5
 echo -e "${GB}[ INFO ]${NC} ${YB}Downloading Menu Trojan${NC}"
-wget -q -O add-trojan "https://raw.githubusercontent.com/arismaramar/scxray/main/trojan/add-trojan.sh"
+wget -q -O add-trojan "https://raw.githubusercontent.com/hidessh99/why/main/trojan/add-trojan.sh"
 wget -q -O del-trojan "https://raw.githubusercontent.com/arismaramar/scxray/main/trojan/del-trojan.sh"
 wget -q -O extend-trojan "https://raw.githubusercontent.com/arismaramar/ALL-XRAY/main/trojan/extend-trojan.sh"
-wget -q -O trialtrojan "https://raw.githubusercontent.com/arismaramar/scxray/trojan/trialtrojan.sh"
+wget -q -O trialtrojan "https://raw.githubusercontent.com/hidessh99/why/main/trojan/trialtrojan.sh"
 wget -q -O cek-trojan "https://raw.githubusercontent.com/arismaramar/scxray/trojan/cek-trojan.sh"
 sleep 0.5
 echo -e "${GB}[ INFO ]${NC} ${YB}Downloading Menu Shadowsocks${NC}"
@@ -750,6 +750,22 @@ echo "/usr/sbin/nologin" >> /etc/shells
 
 #add path public
 wget https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/path-public.sh; chmod +x path-public.sh; ./path-public.sh
+
+#cronjob
+cat > /etc/cron.d/re_otm <<-END
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+0 2 * * * root /sbin/reboot
+END
+
+#banner
+cd
+echo "================  Banner ======================"
+wget -O /etc/issue.net "https://gitlab.com/hidessh/baru/-/raw/main/banner.conf"
+chmod +x /etc/issue.net
+
+echo "Banner /etc/issue.net" >> /etc/ssh/sshd_config
+
 rm -f xray
 secs_to_human "$(($(date +%s) - ${start}))"
 echo -e "${YB}[ WARNING ] reboot now ? (Y/N)${NC} "
