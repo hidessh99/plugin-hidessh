@@ -21,7 +21,7 @@
       "streamSettings":{
         "network": "ws",
         "wsSettings": {
-          "path": "/hidessh-vmess",
+          "path": "/vmess",
           "alpn": [
             "h2",
             "http/1.1"
@@ -45,7 +45,7 @@
       "streamSettings":{
         "network": "ws",
         "wsSettings": {
-          "path": "/hidessh-vless",
+          "path": "/vless",
           "alpn": [
             "h2",
             "http/1.1"
@@ -69,7 +69,7 @@
       "streamSettings":{
         "network": "ws",
         "wsSettings": {
-          "path": "/hidessh-trojan",
+          "path": "/trojan",
           "alpn": [
             "h2",
             "http/1.1"
@@ -94,7 +94,7 @@
       "streamSettings":{
         "network": "ws",
         "wsSettings": {
-          "path": "/hidessh-ss",
+          "path": "/shadowsocks",
           "alpn": [
             "h2",
             "http/1.1"
@@ -120,7 +120,7 @@
       "streamSettings":{
         "network": "ws",
         "wsSettings": {
-          "path": "/hidessh-ss2022",
+          "path": "/shadowsocks2022",
           "alpn": [
             "h2",
             "http/1.1"

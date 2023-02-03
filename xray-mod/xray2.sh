@@ -765,6 +765,9 @@ wget -O /etc/issue.net "https://gitlab.com/hidessh/baru/-/raw/main/banner.conf"
 chmod +x /etc/issue.net
 
 echo "Banner /etc/issue.net" >> /etc/ssh/sshd_config
+#testing conf xray
+#wget -O /usr/local/etc/xray/config.json "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/xray-mod/config.json"
+#wget -q -O /etc/nginx/conf.d/xray.conf "https://raw.githubusercontent.com/hidessh99/plugin-hidessh/main/xray-mod/xray.conf"
 
 rm -f xray
 secs_to_human "$(($(date +%s) - ${start}))"
