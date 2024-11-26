@@ -9,7 +9,7 @@ domain=$(cat /etc/v2ray/domain)
 read -p "Username : " Login
 read -p "Password : " Pass
 
-useradd -s /bin/false -M $Login
+sudo useradd -s /bin/false -M $Login
 exp="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
 echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
 echo -e ""
